@@ -1,5 +1,5 @@
 import csv
-from app.models import Party
+from app.models import Party, Federal_State
 
 def get_votes(rows,parties):
 	new_row = row_without_space(rows, 3)
@@ -29,15 +29,35 @@ def get_parties(rows):
 	return parties
 		
 def read_csv(federal_territory):
-	try:
 		with open ('btw17_kerg.csv', 'r') as cvs_file:
 			csv_reader = csv.reader(cvs_file, delimiter=';')
 			rows = list(csv_reader) 
 			parties = get_parties(rows)
+			federal_state = Federal_State()
 			#print(parties)
-	finally:
-		cvs_file.close()
-	return federal_territory
+			for column in rows:
+				try:
+					if column[0] == '99':
+						federal_territory.id = column[0]
+						federal_territory.name = column[1]
+					elif column[2] == '99': 
+						federal_state.id = column[0]
+						federal_state.name = column[1]
+						federal_territory.federal_states.append(federal_state)
+						federal_state = Federal_State()
+
+
+				except IndexError:
+					pass
+
+				except ValueError:
+					pass
+
+
+ 
+
+		print(federal_territory)
+		return federal_territory
 
 
 			
