@@ -4,10 +4,39 @@ from app.models import Party, Federal_State, Constituency, Result
 
 
 def get_party_votes(row, party):
-	print(row, party)
+	results = []
+
+	index = 19
+
+	first_vote_total = row[15]
+	second_vote_total = row[17]
+
+	while index < len(row) - 1:
+
+		first_vote = 0
+		second_vote = 0
+
+		try:
+			if row[index]:
+				first_vote = row[index]
 
 
-	    		
+		except IndexError:
+			pass
+
+		try:
+			if row[index + 1]:
+				second_vote = row[index + 1]
+
+		except IndexError:
+			pass
+
+		results.append(Result(first_vote = first_vote, second_vote = second_vote, first_vote_total = first_vote_total, second_vote_total = second_vote_total , party = party[int((index - 19) / 4 )] ))
+		index += 4
+
+		#print(results)
+	return results
+		
 
 
 
@@ -31,21 +60,24 @@ def read_csv(federal_territory):
 			parties = get_parties(rows)
 			federal_state = Federal_State()
 			constituencies = []
+
 			#print(parties)
 			for row in rows:
 				try:
 					if row[0] == '99':
 						federal_territory.id = row[0]
 						federal_territory.name = row[1]
+						federal_territory.results = get_party_votes(row, parties)
 					elif row[2] == '99': 
 						federal_state.id = row[0]
 						federal_state.name = row[1]
+						federal_state.results= get_party_votes(row, parties)
 						federal_territory.federal_states.append(federal_state)
 						federal_state = Federal_State()
 						constituencies = []
 					elif int(row[2]) in range(17): 
-						get_party_votes(row, parties)
-						constituencies.append(Constituency(name = row[1], id = row[0], federal_state = federal_state))
+						results = get_party_votes(row, parties)
+						constituencies.append(Constituency(name = row[1], id = row[0], federal_state = federal_state, results = results))
 
 
 
@@ -57,8 +89,6 @@ def read_csv(federal_territory):
 
 
  
-
-		#print(federal_territory)
 		return federal_territory
 
 

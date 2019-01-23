@@ -78,13 +78,13 @@ class Result(db.Model):
 	constituency_id = db.Column(db.Integer, db.ForeignKey('constituencies.id'), nullable=True)
 	party_id = db.Column(db.Integer, db.ForeignKey('parties.id'))
 	federal_state_id = db.Column(db.Integer, db.ForeignKey('federal_states.id'), nullable=True)
-	federal_territory_id = db.Column(db.Integer, db.ForeignKey('federal_territories.id'), nullable=False)
+	federal_territory_id = db.Column(db.Integer, db.ForeignKey('federal_territories.id'), nullable=True)
 
 
 	def __repr__(self):
 		return (
 			f'{self.__class__.__name__}('
-			f'{self.id},{self.name}, {self.first_vote}, {self.second_vote}, {self.first_vote_total},{self.second_vote_total},{self.party!r})'
+			f'{self.id}, {self.first_vote}, {self.second_vote}, {self.first_vote_total},{self.second_vote_total},{self.party!r})'
 		)
 
 
