@@ -1,15 +1,11 @@
 import csv
-from app.models import Party, Federal_State
+from app.models import Party, Federal_State, Constituency, Result
 
-def get_votes(rows,parties):
-	new_row = row_without_space(rows, 3)
-	results= []
-	index = 3
-	while index < len(new_row) - 1:
-		first_vote = 0
-		if new_row[index]:
-			first_vote = new_row[index]
-			#print(first_vote)
+
+
+def get_party_votes(row, party):
+	print(row, party)
+
 
 	    		
 
@@ -34,17 +30,23 @@ def read_csv(federal_territory):
 			rows = list(csv_reader) 
 			parties = get_parties(rows)
 			federal_state = Federal_State()
+			constituencies = []
 			#print(parties)
-			for column in rows:
+			for row in rows:
 				try:
-					if column[0] == '99':
-						federal_territory.id = column[0]
-						federal_territory.name = column[1]
-					elif column[2] == '99': 
-						federal_state.id = column[0]
-						federal_state.name = column[1]
+					if row[0] == '99':
+						federal_territory.id = row[0]
+						federal_territory.name = row[1]
+					elif row[2] == '99': 
+						federal_state.id = row[0]
+						federal_state.name = row[1]
 						federal_territory.federal_states.append(federal_state)
 						federal_state = Federal_State()
+						constituencies = []
+					elif int(row[2]) in range(17): 
+						get_party_votes(row, parties)
+						constituencies.append(Constituency(name = row[1], id = row[0], federal_state = federal_state))
+
 
 
 				except IndexError:
@@ -56,7 +58,7 @@ def read_csv(federal_territory):
 
  
 
-		print(federal_territory)
+		#print(federal_territory)
 		return federal_territory
 
 

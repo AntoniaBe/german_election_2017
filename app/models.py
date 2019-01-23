@@ -20,7 +20,7 @@ class Constituency(db.Model):
 	def __repr__(self):
 		return (
 			f'{self.__class__.__name__}('
-			f'{self.id},{self.name},{self.federal_state_id},{self.election_results!r})'
+			f'{self.id},{self.name},{self.federal_state_id},{self.results!r})'
 		)
 
 
