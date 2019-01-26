@@ -3,15 +3,28 @@
 <head>
   <meta charset="utf-8">
   <title>AngularApp</title>
-  <base href="/">
+  <base href="/app/">
 
-  <script src="node_modules/chart.js/Chart.min.js"></script>
-  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+   body {
+     padding: 0;
+     margin: 0;
+     font-family: "Helvetica";
+     overflow-y: scroll;
+   }
+ </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <app-root></app-root>
+
+<script type="text/javascript" src="dist/inline.bundle.js"></script>
+<script type="text/javascript" src="dist/polyfills.bundle.js"></script>
+<script type="text/javascript" src="dist/vendor.bundle.js"></script>
+<script type="text/javascript" src="dist/main.bundle.js"></script>
+
 </body>
 </html>

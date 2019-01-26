@@ -1,0 +1,9 @@
+<div>
+  <div class="title">Federal States</div>
+  <div class="header-row"></div>
+  <div class="box">
+    <div *ngFor="let federalState of federalStates">
+      <a (click)="getConstituencies(federalState)"><div> {{federalState.name}} </div></a>
+    </div>
+  </div>
+</div>

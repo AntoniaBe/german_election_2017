@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RegionService } from './region.service';
+import { ConstituencyService } from './constituency.service';
 
 describe('RegionService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: RegionService = TestBed.get(RegionService);
+    const service: ConstituencyService = TestBed.get(ConstituencyService);
     expect(service).toBeTruthy();
   });
 });

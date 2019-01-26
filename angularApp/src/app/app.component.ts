@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {StateComponent} from "./state/state.component";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  template: `
+    <federal-States> </federal-States>
+  `
 })
 export class AppComponent {
   title = 'angularApp';

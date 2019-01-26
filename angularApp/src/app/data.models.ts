@@ -1,4 +1,4 @@
-export interface Federal_Territory {
+export interface Federal_State{
     id: number;
     name: string;
 }

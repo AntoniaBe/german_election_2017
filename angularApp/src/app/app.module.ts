@@ -6,20 +6,20 @@ import {ChartsModule} from "ng2-charts";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StateComponent } from './state/state.component';
-import { RegionComponent } from './region/region.component';
+import { FederalStateComponent } from './federalState/federalState.component';
+import { ConstituencyComponent } from './constituency/constituency.component';
 import { ElectionListComponent } from './election-list/election-list.component';
 import { ElectionGraphComponent } from './election-graph/election-graph.component';
 
-import {RegionService} from "./region.service";
-import {StateService} from "./state.service";
+import {ConstituencyService} from "./constituency.service";
+import {FederalStateService} from "./federalState.service";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StateComponent,
-    RegionComponent,
+    FederalStateComponent,
+    ConstituencyComponent,
     ElectionListComponent,
     ElectionGraphComponent
   ],
@@ -31,7 +31,7 @@ import {StateService} from "./state.service";
     ChartsModule
 
   ],
-  providers: [RegionService, StateService],
+  providers: [ConstituencyService, FederalStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
