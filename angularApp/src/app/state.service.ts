@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {FederalState } from "./data.models";
-import 'rxjs'
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { Federal_Territory } from "./data.models";
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
-  private url: string = "/api/states"
+  private federal_territory_url: string = "/api/federal_territory"
 
   constructor(private http: HttpClient) { }
 
-  getAllStates(): Promise<FederalState[]> {
-    return this.http.get(this.url, { headers: new HttpHeaders(
-            {'Content-Type':'application/json'}
-        )}).toPromise().then(response => response.json().data).catch((error) => console.log('no States: ',error));
-  }
+  fetchFederalTerritory(): Observable<Federal_Territory[]> {
+    return this.http.get<Federal_Territory[]>(this.federal_territory_url).pipe(
 
-  private header() {
-    return new Headers(
-        {'Content-Type':'application/json'}
+      catchError((err: HttpErrorResponse) => {
+        return Observable.throw(console.log('federal territory doesnt exist: ', err));
+      })
     )
   }
 }

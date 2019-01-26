@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FederalState, Constituency } from "../data.models";
+import { Federal_Territory, Constituency } from "../data.models";
 import { RegionComponent} from "../region/region.component";
 import {StateService} from "../state.service";
 import {RegionService} from "../region.service";
@@ -10,14 +10,14 @@ import {RegionService} from "../region.service";
   styleUrls: ['./state.component.css']
 })
 export class StateComponent implements OnInit {
-  states: FederalState[];
+  federalTerritory: Federal_Territory[];
   constituencies: Constituency[];
   stateName: string;
 
   constructor(private stateServ: StateService, private regionServ: RegionService) { }
 
   ngOnInit() {
-    this.stateServ.getAllStates().then(results => this.states = results);
+    this.stateServ.fetchFederalTerritory().subscribe(results => this.federalTerritory = results);
   }
 
   getStatesRegions(state: FederalState){
