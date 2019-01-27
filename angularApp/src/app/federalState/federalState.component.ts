@@ -9,15 +9,25 @@ import {ConstituencyService} from "../constituency.service";
   styleUrls: ['./federalState.component.css']
 })
 export class FederalStateComponent implements OnInit {
-  federalStates: Federal_State[];
+  federalStates;
   constituencies: Constituency[];
   federalStateName : string;
 
   constructor(private federalStateServ: FederalStateService, private constituencyServ: ConstituencyService) { }
 
   ngOnInit() {
-    this.federalStateServ.fetchFederalStates().subscribe(results => this.federalStates = results);
-    console.log(this.federalStates);
+    this.getStates();
+  }
+  getStates(){
+      this.federalStateServ.fetchFederalStates().subscribe(results => {
+          this.federalStates = results.data;
+          console.log(this.federalStates);
+
+
+
+
+
+          }, err => {console.log(err)});
   }
 
   getConstituencies(federal_state: Federal_State){
