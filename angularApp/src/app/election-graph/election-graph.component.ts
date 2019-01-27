@@ -11,7 +11,8 @@ export class ElectionGraphComponent implements OnChanges {
 
  @Input('results') results: Result[];
 
-  public doughnutChartPartyLabels:string[] = [];
+  public doughnutFirstPartyLabels:string[] = [];
+  public doughnutSecondPartyLabels:string[] = [];
   public doughnutChartFirstVote:number[] = [];
   public doughnutChartSecondVote:number[] = [];
 
@@ -29,9 +30,14 @@ export class ElectionGraphComponent implements OnChanges {
     this.resetResult();
     for(var result in this.results){
 
-      this.doughnutChartPartyLabels.push(this.results[result].partyName);
-      this.doughnutChartFirstVote.push(this.results[result].firstVote)
-      this.doughnutChartSecondVote.push(this.results[result].secondVote)
+        if(this.results[result].firstVote > 1.0){
+            this.doughnutFirstPartyLabels.push(this.results[result].partyName);
+            this.doughnutChartFirstVote.push(this.results[result].firstVote)
+        }
+        if(this.results[result].secondVote){
+            this.doughnutChartSecondVote.push(this.results[result].secondVote)
+            this.doughnutSecondPartyLabels.push(this.results[result].partyName);
+        }
 
 
     }
@@ -42,7 +48,8 @@ export class ElectionGraphComponent implements OnChanges {
   resetResult() {
     this.doughnutChartFirstVote = [];
     this.doughnutChartSecondVote = [];
-    this.doughnutChartPartyLabels = [];
+    this.doughnutFirstPartyLabels = [];
+    this.doughnutSecondPartyLabels = [];
 }
 
 }

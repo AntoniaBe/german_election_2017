@@ -14,7 +14,7 @@ export class ConstituencyComponent implements OnChanges {
   term: string;
 
   @Input('constituencies') constituencies;
-  @Input('federalState_name') federalState_name: string;
+  @Input('federalState_name') federalState_name;
 
   backUpconstituencies: any;
 
@@ -24,6 +24,9 @@ export class ConstituencyComponent implements OnChanges {
   private constituencyName: string;
 
   ngOnChanges() {
+      console.log(this.federalState_name);
+
+      console.log(this.constituencies);
     this.term = '';
     this.results = null;
     this.backUpconstituencies = this.constituencies;
@@ -33,19 +36,15 @@ export class ConstituencyComponent implements OnChanges {
    this.backUpconstituencies = this.constituencies;
   }
 
-  abc(event:any)  {
-    console.log(this.backUpconstituencies);
+  onInputChange(event:any)  {
     this.constituencies = this.filterValues(this.backUpconstituencies, event.target.value);
   }
 
 
   filterValues(value: any, input: string){
-      console.log("value ", value);
-      console.log("input ", input);
    if (input) {
         input = input.toLowerCase();
         return value.filter(function (el: any) {
-            console.log('el: ', el);
             return el.name.toLowerCase().indexOf(input) > -1;
         })
     }
@@ -65,8 +64,6 @@ export class ConstituencyComponent implements OnChanges {
     var first_total = results[0].firstVoteTotal;
     var second_total = results[0].secondVoteTotal;
 
-    //first_total = 100 %
-    //first_votes =
 
     for (var result in results) {
 

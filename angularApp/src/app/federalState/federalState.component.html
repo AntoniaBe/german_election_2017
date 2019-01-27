@@ -1,15 +1,17 @@
-<div>
+<div class="flex-row">
+  <div class="first">
   <div class="title">Federal States</div>
-  <div class="header-row"></div>
   <div class="box">
     <div *ngFor="let federalState of federalStates">
-      <a (click)="getConstituencies(federalState)"> {{federalState.name}}</a>
+      <a (click)="getConstituencies(federalState)"><div> {{federalState.name}}</div></a>
     </div>
   </div>
+  </div>
+  <ng-container *ngIf="constituencies">
+    <app-region [constituencies]="constituencies" [federalState_name]=federalStateName> </app-region>
+  </ng-container>
 </div>
-<ng-container *ngIf="constituencies">
-  <app-region [constituencies]="constituencies" [federalState_name]="federalState_name"> </app-region>
-</ng-container>
+
 
 
 <!--(click)="getConstituencies(federalState)"-->

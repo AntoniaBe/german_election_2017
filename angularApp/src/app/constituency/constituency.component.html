@@ -1,8 +1,8 @@
 <div class="flex-row">
-  <div>
-    <div class="title">{{state_name}} </div>
+  <div class="second">
+    <div class="title">{{federalState_name}} </div>
     <div class="header-row">
-      <input (change)="abc($event)" type="text" [(ngModel)]="term" placeholder="Search region ..">
+      <input (change)="onInputChange($event)" type="text" [(ngModel)]="term" placeholder="Search region ..">
     </div>
     <div class="box">
       <div *ngFor="let constituency of constituencies">
@@ -12,15 +12,15 @@
       </div>
     </div>
   </div>
-  <div>
-    <div *ngIf="results" style="max-width: 400px;">
+  <div class="second">
+    <div *ngIf="results">
       <div class="title">{{constituencyName}}</div>
       <app-election-list [electionList]="results"> </app-election-list>
     </div>
   </div>
-  <div *ngIf="results" style="flex-grow: 1;">
-    <app-election-graph [results]="results"> </app-election-graph>
-  </div>
+</div>
+<div *ngIf="results" style="flex-grow: 1;" class="graph flex-row">
+  <app-election-graph [results]="results"> </app-election-graph>
 </div>
 
 

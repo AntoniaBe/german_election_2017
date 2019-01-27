@@ -1,24 +1,19 @@
- <div style="display:block">
+ <div class="chart">
+     <div>
   <div class="title">Erststimmen </div>
   <canvas baseChart
               [data]="doughnutChartFirstVote"
-              [labels]="doughnutChartPartyLabels"
+              [labels]="doughnutFirstPartyLabels"
               [chartType]="doughnutChartType"></canvas>
+     </div>
 </div>
-<div style="display:block">
+<div class="chart">
+    <div>
     <div class="title">Zweitstimmen </div>
   <canvas baseChart
               [data]="doughnutChartSecondVote"
-              [labels]="doughnutChartPartyLabels"
+              [labels]="doughnutSecondPartyLabels"
               [chartType]="doughnutChartType"></canvas>
+    </div>
 </div>
 
-<!--<div>
-  <div>
-    <div class="title"> Erststimmen </div>
-    <div class="header-row">
-    </div>
-    <canvas style="width: 100%, display:block" baseChart [datasets]="doughnutChartFirstVote" [labels]="doughnutChartPartyLabels" [chartType]="doughnutChartType">
-    </canvas>
-  </div>
-</div>-->
