@@ -36,7 +36,7 @@ def get_party_votes(row, party):
 
 		#print(results)
 	return results
-		
+
 
 
 
@@ -49,14 +49,14 @@ def row_without_space(row, index):
 def get_parties(rows):
 	new_row = row_without_space(rows, 2)
 	parties = []
-	for i in new_row[7:]:	
+	for i in new_row[7:]:
 		parties.append(Party(name=i))
 	return parties
-		
+
 def read_csv(federal_territory):
 		with open ('btw17_kerg.csv', 'r') as cvs_file:
 			csv_reader = csv.reader(cvs_file, delimiter=';')
-			rows = list(csv_reader) 
+			rows = list(csv_reader)
 			parties = get_parties(rows)
 			federal_state = Federal_State()
 			constituencies = []
@@ -68,14 +68,14 @@ def read_csv(federal_territory):
 						federal_territory.id = row[0]
 						federal_territory.name = row[1]
 						federal_territory.results = get_party_votes(row, parties)
-					elif row[2] == '99': 
+					elif row[2] == '99':
 						federal_state.id = row[0]
 						federal_state.name = row[1]
 						federal_state.results= get_party_votes(row, parties)
 						federal_territory.federal_states.append(federal_state)
 						federal_state = Federal_State()
 						constituencies = []
-					elif int(row[2]) in range(17): 
+					elif int(row[2]) in range(17):
 						results = get_party_votes(row, parties)
 						constituencies.append(Constituency(name = row[1], id = row[0], federal_state = federal_state, results = results))
 
@@ -88,13 +88,13 @@ def read_csv(federal_territory):
 					pass
 
 
- 
+
 		return federal_territory
 
 
-			
 
-		
+
+
 
 
 

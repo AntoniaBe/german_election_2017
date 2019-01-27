@@ -9,18 +9,16 @@ import { catchError } from 'rxjs/operators';
 })
 export class ConstituencyService {
 
-  private federal_states_url: string = "/api/federal_states"
-  private constituency_url = '/api/constituency'
+  private federal_states_url: string = "http://localhost:5000/api/federal_states"
+  private constituency_url: string = 'http://localhost:5000/api/constituency'
 
   constructor(private http: HttpClient) { }
 
-  fetchConstituencies(federalStateId: number): Observable<Constituency[]> {
-    let url: string = `${this.federal_states_url}/${federalStateId}/constituencies`
-    return this.http.get<Constituency[]>(url).pipe(
-      catchError((err: HttpErrorResponse) => {
-        return Observable.throw(console.log('constituencies doesnt exist: ', err));
-      })
-    )
+  fetchConstituencies(federalStateId: number): Observable<any> {
+
+      let url: string = `${this.federal_states_url}/${federalStateId}/constituencies`
+
+    return this.http.get(url, {headers: {'Content-Type': 'application/json'}})
   }
 
 

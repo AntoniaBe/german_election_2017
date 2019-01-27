@@ -22,17 +22,14 @@ export class FederalStateComponent implements OnInit {
       this.federalStateServ.fetchFederalStates().subscribe(results => {
           this.federalStates = results.data;
           console.log(this.federalStates);
-
-
-
-
-
           }, err => {console.log(err)});
   }
 
   getConstituencies(federal_state: Federal_State){
-    this.constituencyServ.fetchConstituencies(federal_state.id).subscribe(results => this.constituencies = results);
+    console.log("fetching");
+    this.constituencyServ.fetchConstituencies(federal_state.id).subscribe(results => this.constituencies = results.data);
     this.federalStateName = federal_state.name;
+    console.log("fetched");
   }
 
 }

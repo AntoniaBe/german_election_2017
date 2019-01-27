@@ -3,9 +3,13 @@
   <div class="header-row"></div>
   <div class="box">
     <div *ngFor="let federalState of federalStates">
-      <a ><div> {{federalState.name}} </div></a>
+      <a (click)="getConstituencies(federalState)"> {{federalState.name}}</a>
     </div>
   </div>
 </div>
+<ng-container *ngIf="constituencies">
+  <app-region [constituencies]="constituencies" [federalState_name]="federalState_name"> </app-region>
+</ng-container>
+
 
 <!--(click)="getConstituencies(federalState)"-->
