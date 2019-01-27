@@ -2,7 +2,7 @@
   <div>
     <div class="title">{{state_name}} </div>
     <div class="header-row">
-      <input type="text" [(ngModel)]="term" placeholder="Search region ..">
+      <input (change)="abc($event)" type="text" [(ngModel)]="term" placeholder="Search region ..">
     </div>
     <div class="box">
       <div *ngFor="let constituency of constituencies">
@@ -18,10 +18,13 @@
       <app-election-list [electionList]="results"> </app-election-list>
     </div>
   </div>
+  <div *ngIf="results" style="flex-grow: 1;">
+    <app-election-graph [results]="results"> </app-election-graph>
+  </div>
 </div>
 
 
 <!-- (click)="getElectorialResult(constituency)"-->
 
-    <!--  <election-list [electionList]="electionPartyResults"> </election-list>
+<!--  <election-list [electionList]="electionPartyResults"> </election-list>
 -->
