@@ -54,7 +54,7 @@ def get_parties(rows):
 	return parties
 
 def read_csv(federal_territory):
-		with open ('btw17_kerg.csv', 'r', encoding="uft-8") as cvs_file:
+		with open ('btw17_kerg.csv', 'r', encoding="utf-8") as cvs_file:
 			csv_reader = csv.reader(cvs_file, delimiter=';')
 			rows = list(csv_reader)
 			parties = get_parties(rows)
