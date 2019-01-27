@@ -1,6 +1,4 @@
 1. [Installation](#1.-Installation)
-2. [Angular App Showcase](#2.-Angular-App-Showcase)
-3. [Flask Server Showcase](#2.-Flask-Server-Showcase)
 
 # 1. Installation
 
@@ -47,9 +45,4 @@ Start the flask server
 Open the flask server in the browser
 
     http://localhost:5000/
-
-
-# 2. Angular-App-Showcase
-# 3. Flask-Server-Showcase
-
 
