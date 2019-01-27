@@ -17,6 +17,7 @@ export class FederalStateComponent implements OnInit {
 
   ngOnInit() {
     this.federalStateServ.fetchFederalStates().subscribe(results => this.federalStates = results);
+    console.log(this.federalStates);
   }
 
   getConstituencies(federal_state: Federal_State){
