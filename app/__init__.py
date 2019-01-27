@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify, send_from_directory
 import os
@@ -10,6 +11,7 @@ print('BASE_URL ' + BASE_URL)
 print('CLIENT_APP_FOLDER ' + CLIENT_APP_FOLDER)
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
