@@ -21,13 +21,9 @@ export class ConstituencyService {
     return this.http.get(url, {headers: {'Content-Type': 'application/json'}})
   }
 
+  fetchResults(constituencyId: number): Observable<any> {
+  let url: string = `${this.constituency_url}/${constituencyId}/results`
+    return this.http.get(url, {headers: {'Content-Type': 'application/json'}})
+}
 
-  fetchResults(constituencyId: number): Observable<Result[]> {
-    let url: string = `${this.constituency_url}/${constituencyId}/results`
-    return this.http.get<Result[]>(url).pipe(
-      catchError((err: HttpErrorResponse) => {
-        return Observable.throw(console.log('results doesnt exist: ', err));
-      })
-    )
-  }
 }

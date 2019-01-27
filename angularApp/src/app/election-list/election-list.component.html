@@ -1,3 +1,16 @@
-<p>
-  election-list works!
-</p>
+<div>
+  <table class="election-table">
+    <tr height="30">
+      <th> Patei Name </th>
+      <th> Erst Stimmen </th>
+      <th> Zweit Stimmen </th>
+    </tr>
+    <ng-container *ngFor="let result of electionList">
+      <tr>
+        <td> {{result.partyName}} </td>
+        <td> {{result.firstVotePercent}} %</td>
+        <td> {{result.secondVotePercent}} %</td>
+      </tr>
+    </ng-container>
+  </table>
+</div>

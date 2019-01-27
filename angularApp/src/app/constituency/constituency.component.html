@@ -1,17 +1,27 @@
-
 <div class="flex-row">
-        <div>
-            <div class="title">{{state_name}} </div>
-            <div class="header-row">
-                <input type="text" [(ngModel)]="term" placeholder="Search region ..">
-            </div>
-            <div class="box">
-                <div *ngFor="let constituency of constituencies">
-                    <a ><div> {{constituency.name}} </div></a>
-                </div>
-            </div>
-        </div>
+  <div>
+    <div class="title">{{state_name}} </div>
+    <div class="header-row">
+      <input type="text" [(ngModel)]="term" placeholder="Search region ..">
     </div>
+    <div class="box">
+      <div *ngFor="let constituency of constituencies">
+        <a (click)="getResult(constituency)">
+          <div> {{constituency.name}} </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div *ngIf="results" style="max-width: 400px;">
+      <div class="title">{{constituencyName}}</div>
+      <app-election-list [electionList]="results"> </app-election-list>
+    </div>
+  </div>
+</div>
 
 
 <!-- (click)="getElectorialResult(constituency)"-->
+
+    <!--  <election-list [electionList]="electionPartyResults"> </election-list>
+-->
